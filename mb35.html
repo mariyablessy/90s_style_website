@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to KawaiiCorp</title>
+    <style>
+        body {
+            background-color: #c3d9ff;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            color: #000080;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            width: 80%;
+            margin: auto;
+            border: 5px dashed #ff69b4;
+            background-color: #f0e68c;
+            padding: 20px;
+            box-shadow: 5px 5px 10px #888;
+        }
+        h1 {
+            text-align: center;
+            color: #ff1493;
+            text-shadow: 2px 2px #ffa500;
+        }
+        marquee {
+            color: #32cd32;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #ff69b4;
+            padding: 10px;
+            border: 2px solid #fff;
+        }
+        .nav-bar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .blink {
+            animation: blink 1s step-start infinite;
+            color: #ff0000;
+        }
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+        img {
+            border: 5px solid #32cd32;
+            margin: 10px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            background-color: #000080;
+            color: #fff;
+            padding: 10px;
+        }
+        #guestbook {
+            margin-top: 30px;
+            background-color: #ffebcd;
+            padding: 15px;
+            border: 3px solid #ff69b4;
+        }
+        #guestbook form {
+            margin-bottom: 15px;
+        }
+        #guestbook input, #guestbook textarea {
+            width: 80%;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        #guestbook button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #guestbook button:hover {
+            background-color: #ff1493;
+        }
+        audio {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to KawaiiCorp!</h1>
+        <marquee>🌸 The cutest place on the web! 🌸</marquee>
+        <div class="nav-bar">
+            <a href="#about">About Us</a>
+            <a href="#products">Products</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="content">
+            <h2>✨ About Us ✨</h2>
+            <p>KawaiiCorp specializes in making your world 100% cuter with our adorable products and services.</p>
+            <img src="https://via.placeholder.com/200x150" alt="Kawaii Product 1">
+            <img src="https://via.placeholder.com/200x150" alt="Kawaii Product 2">
+            <p class="blink">Click on the links above to learn more! ✨</p>
+        </div>
+
+        <div id="guestbook">
+            <h3>🌟 Sign Our Guestbook! 🌟</h3>
+            <form id="guestbook-form">
+                <input type="text" placeholder="Your Name" id="guest-name" required>
+                <textarea placeholder="Your Comment" id="guest-comment" required></textarea>
+                <button type="submit">Sign</button>
+            </form>
+            <div id="guestbook-entries"></div>
+        </div>
+
+        <div>
+            <p>🎵 Play Our Retro Theme!</p>
+            <audio controls loop>
+                <source src="retro-theme.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+        <p>You are visitor number: <span id="counter">0</span>!</p>
+    </div>
+    <footer>
+        © 1999 KawaiiCorp. All Rights Reserved.
+    </footer>
+
+    <script>
+        // Guestbook functionality
+        console.log("Setting up guestbook form listener");
+        document.getElementById('guestbook-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('guest-name').value;
+            const comment = document.getElementById('guest-comment').value;
+            console.log("Guestbook entry submitted:", { name, comment });
+            const entries = document.getElementById('guestbook-entries');
+            entries.innerHTML += `<p><strong>${name}</strong>: ${comment}</p>`;
+            console.log("Guestbook updated with new entry.");
+            this.reset();
+        });
+
+        // Hit counter functionality
+        console.log("Initializing hit counter");
+        let count = localStorage.getItem('hitCount') || 0;
+        console.log("Current hit count from localStorage:", count);
+        count++;
+        localStorage.setItem('hitCount', count);
+        console.log("Updated hit count in localStorage:", count);
+        document.getElementById('counter').innerText = count;
+    </script>
+</body>
+</html>
